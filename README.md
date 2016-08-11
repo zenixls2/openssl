@@ -1,6 +1,8 @@
 # OpenSSL bindings for Go
 
 Please see http://godoc.org/github.com/spacemonkeygo/openssl for more info
+This fork version aims to remove SSLv3 wrapping for newer openssl.
+In our internal test for amd servers, openssl wrapper still runs 2x faster than native TLS implementation in golang v1.6.
 
 ### License
 
