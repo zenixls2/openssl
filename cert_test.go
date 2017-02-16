@@ -42,6 +42,34 @@ func TestCertGenerate(t *testing.T) {
 	}
 }
 
+func TestCertVersion(t *testing.T) {
+	key, err := GenerateRSAKey(2048)
+	if err != nil {
+		t.Fatal(err)
+	}
+	info := &CertificateInfo{
+		Serial:       big.NewInt(int64(1)),
+		Issued:       0,
+		Expires:      24 * time.Hour,
+		Country:      "US",
+		Organization: "Test",
+		CommonName:   "localhost",
+	}
+	cert, err := NewCertificate(info, key)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cert.GetVersion() != X509_V1 {
+		t.Fatal("Default version should be X509_V1")
+	}
+	if err := cert.SetVersion(X509_V3); err != nil {
+		t.Fatal(err)
+	}
+	if cert.GetVersion() != X509_V3 {
+		t.Fatal("Version set to X509_V3 failed")
+	}
+}
+
 func TestCAGenerate(t *testing.T) {
 	cakey, err := GenerateRSAKey(2048)
 	if err != nil {
