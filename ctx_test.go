@@ -46,3 +46,23 @@ func TestCtxSessCacheSizeOption(t *testing.T) {
 		t.Error("SessSetCacheSize() does not save anything to ctx")
 	}
 }
+
+func TestSetEllipticCurve(t *testing.T) {
+	ctx, _ := NewCtx()
+	var err error
+	if err = ctx.SetEllipticCurve(Prime256v1); err != nil {
+		t.Error(err)
+	}
+	if err = ctx.SetEllipticCurve(Secp521r1); err != nil {
+		t.Error(err)
+	}
+	if err = ctx.SetEllipticCurve(C2pnb368w1); err != nil {
+		t.Error(err)
+	}
+	if err = ctx.SetEllipticCurve(C2tnb431r1); err != nil {
+		t.Error(err)
+	}
+	if err = ctx.SetEllipticCurve(WapWsgIdmEcidWtls12); err != nil {
+		t.Error(err)
+	}
+}

@@ -266,10 +266,30 @@ func NewCtxFromFiles(cert_file string, key_file string) (*Ctx, error) {
 type EllipticCurve int
 
 const (
+	// P-192v1: NIST/X9.62/SECG curve over a 192 bit prime field
+	Prime192v1 EllipticCurve = C.NID_X9_62_prime192v1
+	// P-192v2: X9.62 curve over a 192 bit prime field
+	Prime192v2 EllipticCurve = C.NID_X9_62_prime192v2
+	// P-192v3: X9.62 curve over a 192 bit prime field
+	Prime192v3 EllipticCurve = C.NID_X9_62_prime192v3
+	// P-239v1: X9.62 curve over a 239 bit prime field
+	Prime239v1 EllipticCurve = C.NID_X9_62_prime239v1
+	// P-239v2: X9.62 curve over a 239 bit prime field
+	Prime239v2 EllipticCurve = C.NID_X9_62_prime239v2
+	// P-239v3: X9.62 curve over a 239 bit prime field
+	Prime239v3 EllipticCurve = C.NID_X9_62_prime239v3
 	// P-256: X9.62/SECG curve over a 256 bit prime field
 	Prime256v1 EllipticCurve = C.NID_X9_62_prime256v1
 	// P-384: NIST/SECG curve over a 384 bit prime field
 	Secp384r1 EllipticCurve = C.NID_secp384r1
+	// P-521: NIST/SECG curve over a 521 bit prime field
+	Secp521r1 EllipticCurve = C.NID_secp521r1
+	// C2TNB431r1: X9.62 curve over a 431 bit binary field
+	C2tnb431r1 EllipticCurve = C.NID_X9_62_c2tnb431r1
+	// c2pnb368w1: X9.62 curve over a 368 bit binary field
+	C2pnb368w1 EllipticCurve = C.NID_X9_62_c2pnb368w1
+	// wap-wsg-idm-ecid-wtls12: WTLS curvs over a 224 bit prime field
+	WapWsgIdmEcidWtls12 EllipticCurve = C.NID_wap_wsg_idm_ecid_wtls12
 )
 
 // SetEllipticCurve sets the elliptic curve used by the SSL context to
