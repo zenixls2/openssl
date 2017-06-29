@@ -15,6 +15,7 @@
 package openssl
 
 // #include "shim.h"
+// #include <openssl/rsa.h>
 import "C"
 
 import (
@@ -62,7 +63,8 @@ type PrivateKey interface {
 	MarshalPKCS1PrivateKeyDER() (der_block []byte, err error)
 
 	// GetModulus returns private key modulus
-	GetModulus() (modulus []byte, err error)
+	// temporary remove
+	//GetModulus() (modulus []byte, err error)
 }
 
 type pKey struct {
@@ -168,21 +170,23 @@ func (key *pKey) MarshalPKIXPublicKeyPEM() (pem_block []byte,
 	return ioutil.ReadAll(asAnyBio(bio))
 }
 
-func (key *pKey) GetModulus() ([]byte, error) {
-	rsa := (*C.RSA)(C.EVP_PKEY_get1_RSA(key.key))
+// A strange bug that we cannot access C.struct_rsa_st members
+// so remove this function first
+/*func (key *pKey) GetModulus() ([]byte, error) {
+	rsa := (*C.RSA)(C.X_EVP_PKEY_get1_RSA(key.key))
 	if rsa == nil {
 		return nil, errors.New("failed getting rsa key")
 	}
 	defer C.RSA_free(rsa)
 
-	m := C.BN_bn2hex(rsa.n)
+	m := C.BN_bn2hex((*(*C.struct_rsa_st)(rsa)).n)
 	if m == nil {
 		return nil, errors.New("failed to find RSA key modulus")
 	}
-	defer C.CRYPTO_free(unsafe.Pointer(m))
+	defer C.X_OPENSSL_free(unsafe.Pointer(m))
 
 	return ([]byte)(C.GoString(m)), nil
-}
+}*/
 
 func (key *pKey) MarshalPKIXPublicKeyDER() (der_block []byte,
 	err error) {
