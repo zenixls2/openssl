@@ -23,7 +23,7 @@ limitations under the License.
 ### Using on macOS
 1. Install [homebrew](http://brew.sh/)
 2. `$ brew install openssl` or `$ brew install openssl@1.1`
-3. `$ export PKG_CONFIG+PATH="$(brew --prefix openssl)/lib/pkgconfig"`
+3. `$ export PKG_CONFIG+PATH="$(brew --prefix openssl@1.1)/lib/pkgconfig"` # might not be necessary
 4. normal go get installation process
 
 ### Using on Windows
