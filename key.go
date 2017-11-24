@@ -15,7 +15,6 @@
 package openssl
 
 // #include "shim.h"
-// #include <openssl/rsa.h>
 import "C"
 
 import (

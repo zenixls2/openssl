@@ -6,7 +6,7 @@ In our internal test for amd servers, openssl wrapper still runs 2x faster than 
 
 ### License
 
-Copyright (C) 2014 Space Monkey, Inc.
+Copyright (C) 2017. See AUTHORS.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ limitations under the License.
 ### Using on macOS
 1. Install [homebrew](http://brew.sh/)
 2. `$ brew install openssl` or `$ brew install openssl@1.1`
+3. `$ export PKG_CONFIG+PATH="$(brew --prefix openssl)/lib/pkgconfig"`
+4. normal go get installation process
 
 ### Using on Windows
 1. Install [mingw-w64](http://mingw-w64.sourceforge.net/)
